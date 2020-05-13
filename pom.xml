@@ -18,7 +18,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <lombok.version>1.18.2</lombok.version>
-    <checkstyle.version>8.13</checkstyle.version>
+    <checkstyle.version>8.29</checkstyle.version>
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
     <findbugs.version>3.0.0</findbugs.version>
     <openapi-restassured.version>0.0.8</openapi-restassured.version>
