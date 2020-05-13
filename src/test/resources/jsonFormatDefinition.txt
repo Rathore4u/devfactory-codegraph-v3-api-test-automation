@@ -1,0 +1,63 @@
+{
+"definition": "schemaVersion: "1.0"
+apiVersion: graphbuilder.df.com/v1alpha1
+kind: Stack
+metadata:
+  name: MyStackName
+stackInputs:
+  parameters:
+    - name: repoUrl
+    - name: commit
+    - name: branch
+    - name: message
+spec:
+  entrypoint: the-dag
+  arguments:
+    parameters:
+      - name: description
+        value: This is a description
+      - name: repoUrl
+        value: MyValue
+      - name: branch
+        value: MyValue
+      - name: commit
+        value: MyValue
+  templates:
+    - name: the-dag
+      dag:
+        tasks:
+          - name: task-1
+            version: 1
+            template: 953353024name
+            arguments:
+              parameters:
+                - name: message
+                  value: MyValue
+          - name: task-2
+            version: 1
+            template: 1130985047name
+            dependencies: [task-1]
+            arguments:
+              parameters:
+                - name: message
+                  value: MyValue
+          - name: task-3
+            version: 1
+            template: 1413362482name
+            arguments:
+              parameters:
+                - name: failure-probability
+                  value: "0"
+                - name: sleep-for-ms
+                  value: "10"
+                - name: codeGraphName
+                  value: "codegraphName"
+                - name: repoUrl
+                  value: "{{workflow.parameters.repoUrl}}"
+                - name: branch
+                  value: "{{workflow.parameters.branch}}"
+                - name: commit
+                  value: "{{workflow.parameters.commit}}"",
+"description": "232583148description",
+"name": "232583148name"
+}

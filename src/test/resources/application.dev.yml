@@ -1,0 +1,5 @@
+#Example in case you need to add new environment specific application settings like baseURL
+api:
+  baseUrl: "https://auto-qa-dev-api-codegraph-eng.devfactory.com/"
+restAssuredSettings:
+  debugMode: "true"

@@ -1,0 +1,41 @@
+pipeline {
+    agent {
+        label 'k8s'
+    }
+
+    tools {
+        maven 'maven-3.3.9'
+    }
+
+    stages {
+        stage ('Initialize') {
+            steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                '''
+            }
+        }
+
+        stage ('Build') {
+            steps {
+                sh "mvn clean verify -P jenkins -DREST_API_DEFAULT_ENV=${findEnvByBranch(env.BRANCH_NAME as String)}"
+            }
+        }
+    }
+
+    post  {
+        always  {
+            allure includeProperties: false, jdk: '', results: [[path: 'allure-results']]
+            junit 'target/surefire-reports/**/*.xml'
+        }
+    }
+}
+
+static String findEnvByBranch(String branchName) {
+    if (branchName == "env/staging") {
+        return "stage"
+    } else {
+        return "dev"
+    }
+}
